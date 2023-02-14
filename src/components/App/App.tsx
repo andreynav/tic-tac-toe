@@ -1,78 +1,82 @@
 import styled from 'styled-components'
 
-import logo from '../../assets/logo.svg'
-
-function App() {
+export const App = () => {
   return (
-    <AppWrapper className="App">
-      <AppHeader className="App-header">
-        <AppLogo src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <AppLink
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </AppLink>
-      </AppHeader>
-      <Square />
-      <Square />
+    <AppWrapper>
+      <Board>
+        <BoardRow1>
+          <Square value={'x'} />
+          <Square value={'x'} />
+          <Square value={'x'} />
+        </BoardRow1>
+        <BoardRow2>
+          <Square value={'x'} />
+          <Square value={'x'} />
+          <Square value={'x'} />
+        </BoardRow2>
+        <BoardRow3>
+          <Square value={'x'} />
+          <Square value={'x'} />
+          <Square value={'x'} />
+        </BoardRow3>
+      </Board>
     </AppWrapper>
   )
 }
 
-const Square = () => {
-  return <StyledButton className={'square'}>X</StyledButton>
+const Board = ({ children }: any) => {
+  return <StyledBoard>{children}</StyledBoard>
 }
 
-export default App
+const Square = ({ value }: { value: string }) => {
+  return <StyledButton>{value}</StyledButton>
+}
 
 const AppWrapper = styled.div`
-  text-align: center;
-
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
-
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`
-
-const AppLogo = styled.img`
-  height: 40vmin;
-  pointer-events: none;
-`
-
-const AppHeader = styled.div`
+  display: grid;
+  height: 100vh;
+  width: auto;
+  grid-template-rows: 0.7fr auto 0.7fr;
+  grid-template-columns: 0.7fr auto 0.7fr;
   background-color: #282c34;
-  min-height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+`
+const StyledBoard = styled.div`
+  display: grid;
+  grid-row: 2/3;
+  grid-column: 2/3;
+  grid-template-rows: 100px 100px 100px;
+  grid-template-columns: 300px;
+  border: 10px solid black;
 `
 
-const AppLink = styled.a`
-  color: #61dafb;
+const BoardRow1 = styled.div`
+  display: grid;
+  grid-row: 0/1;
+  grid-template-rows: 100px;
+  grid-template-columns: 100px 100px 100px;
+`
+
+const BoardRow2 = styled.div`
+  display: grid;
+  grid-row: 1/2;
+  grid-template-rows: 100px;
+  grid-template-columns: 100px 100px 100px;
+`
+
+const BoardRow3 = styled.div`
+  display: grid;
+  grid-row: 2/3;
+  grid-template-rows: 100px;
+  grid-template-columns: 100px 100px 100px;
 `
 
 const StyledButton = styled.button`
+  display: grid;
+  grid-template-rows: 100px;
+  grid-template-columns: 100px;
   height: 100px;
   width: 100px;
+  border: 1px solid black;
   font-size: 70px;
   color: red;
 `
