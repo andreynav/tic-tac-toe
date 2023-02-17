@@ -11,5 +11,9 @@ const StyledInfo = styled.div`
   grid-template-columns: 300px;
   justify-self: center;
   color: snow;
-  //border: 10px solid black;
+  align-content: start;
+
+  & div {
+    line-height: 28px;
+  }
 `

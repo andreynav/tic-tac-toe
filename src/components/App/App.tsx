@@ -5,90 +5,49 @@ import { Square } from 'components/Square/Square'
 import { useState } from 'react'
 import styled from 'styled-components'
 
-export const getMark = (mark: boolean) => {
-  return mark ? 'X' : 'O'
-}
+import { chooseMark } from '../../utils/chooseMark'
+import { isWinner } from '../../utils/isWinner'
 
 export const App = () => {
   const [isCross, setIsCross] = useState(true)
-  const [steps, setSteps] = useState([{ id: 1, text: 'Go to game start' }])
+  const [squares, setSquares] = useState(Array(9).fill(null))
+  const [steps, setSteps] = useState(['Game start:'])
+
+  const handleClick = (value: number) => {
+    if (squares[value] || isWinner(squares)) return
+
+    const updatedSquares = [...squares]
+    updatedSquares[value] = chooseMark(isCross)
+    setSquares(updatedSquares)
+    setIsCross(!isCross)
+    setSteps([...steps, `Step was made in cell #${value}`])
+  }
 
   return (
     <AppWrapper>
       <Board>
         <BoardRow>
-          <Square
-            cellId={1}
-            mark={isCross}
-            setMark={setIsCross}
-            steps={steps}
-            setSteps={setSteps}
-          />
-          <Square
-            cellId={2}
-            mark={isCross}
-            setMark={setIsCross}
-            steps={steps}
-            setSteps={setSteps}
-          />
-          <Square
-            cellId={3}
-            mark={isCross}
-            setMark={setIsCross}
-            steps={steps}
-            setSteps={setSteps}
-          />
+          <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+          <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+          <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
         </BoardRow>
         <BoardRow>
-          <Square
-            cellId={4}
-            mark={isCross}
-            setMark={setIsCross}
-            steps={steps}
-            setSteps={setSteps}
-          />
-          <Square
-            cellId={5}
-            mark={isCross}
-            setMark={setIsCross}
-            steps={steps}
-            setSteps={setSteps}
-          />
-          <Square
-            cellId={6}
-            mark={isCross}
-            setMark={setIsCross}
-            steps={steps}
-            setSteps={setSteps}
-          />
+          <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+          <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+          <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
         </BoardRow>
         <BoardRow>
-          <Square
-            cellId={7}
-            mark={isCross}
-            setMark={setIsCross}
-            steps={steps}
-            setSteps={setSteps}
-          />
-          <Square
-            cellId={8}
-            mark={isCross}
-            setMark={setIsCross}
-            steps={steps}
-            setSteps={setSteps}
-          />
-          <Square
-            cellId={9}
-            mark={isCross}
-            setMark={setIsCross}
-            steps={steps}
-            setSteps={setSteps}
-          />
+          <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+          <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+          <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
         </BoardRow>
       </Board>
       <Info>
-        {steps.map((step) => (
-          <div key={step.id}>{`${step.id}. ${step.text}`}</div>
+        {steps.map((step, id) => (
+          <div key={id}>
+            {id !== 0 && id}
+            {` ${step}`}
+          </div>
         ))}
       </Info>
     </AppWrapper>
