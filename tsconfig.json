@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
     "lib": [
+      "es5",
+      "es6",
       "dom",
       "dom.iterable",
       "esnext"
     ],
     /* Language and Environment */
-    "target": "es2016",
+    "target": "es5",
     "jsx": "react-jsx",
 
     /* Modules */
@@ -43,6 +45,7 @@
     "noImplicitOverride": true,
     "allowUnusedLabels": true,
     "allowUnreachableCode": false,
+    "suppressImplicitAnyIndexErrors": true,
 
     /* Completeness */
     "skipDefaultLibCheck": true,
