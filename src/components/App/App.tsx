@@ -2,7 +2,7 @@ import { Board } from 'components/Board/Board'
 import { BoardRow } from 'components/BoardRow/BoardRow'
 import { Info } from 'components/Info/Info'
 import { Square } from 'components/Square/Square'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import { chooseMark } from '../../utils/chooseMark'
@@ -20,11 +20,18 @@ export const App = () => {
     updatedSquares[value] = chooseMark(isCross)
     setSquares(updatedSquares)
     setIsCross(!isCross)
-    setSteps([...steps, `Step was made in cell #${value}`])
+    setSteps([...steps, `Player put the ${chooseMark(isCross)} on the cell № ${value}`])
   }
+
+  useEffect(() => {
+    if (isWinner(squares)) {
+      setSteps([...steps, `Player ${chooseMark(!isCross)} won!`])
+    }
+  }, [isCross])
 
   return (
     <AppWrapper>
+      <div>{status}</div>
       <Board>
         <BoardRow>
           <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
