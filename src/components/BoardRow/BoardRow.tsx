@@ -1,6 +1,7 @@
+import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
-export const BoardRow = ({ children }: any) => {
+export const BoardRow = ({ children }: PropsWithChildren) => {
   return <StyledBoardRow>{children}</StyledBoardRow>
 }
 

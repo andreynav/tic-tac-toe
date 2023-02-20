@@ -31,7 +31,6 @@ export const App = () => {
 
   return (
     <AppWrapper>
-      <div>{status}</div>
       <Board>
         <BoardRow>
           <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
@@ -52,7 +51,7 @@ export const App = () => {
       <Info>
         {steps.map((step, id) => (
           <div key={id}>
-            {id !== 0 && id}
+            {id !== 0 && !step.includes('won') && id}
             {` ${step}`}
           </div>
         ))}
@@ -65,11 +64,11 @@ const AppWrapper = styled.div`
   display: grid;
   height: 100vh;
   width: auto;
-  grid-template-rows: 0.7fr auto 0.7fr;
-  grid-template-columns: 0.5fr auto 0.8fr;
+  grid-template-rows: 0.4fr auto 1fr;
+  grid-template-columns: 0.4fr auto 0.4fr;
   background-color: #282c34;
   grid-template-areas:
     '. . .'
-    '. Board Info'
-    '. . .';
+    '. Board .'
+    '. Info .';
 `
