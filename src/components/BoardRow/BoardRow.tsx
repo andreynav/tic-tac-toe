@@ -7,6 +7,6 @@ export const BoardRow = ({ children }: PropsWithChildren) => {
 
 const StyledBoardRow = styled.div`
   display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: repeat(var(--num-rows-cols), 1fr);
 `

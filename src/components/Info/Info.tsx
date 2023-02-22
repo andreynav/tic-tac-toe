@@ -9,7 +9,7 @@ const StyledInfo = styled.div`
   display: grid;
   grid-area: Info;
   grid-template-rows: auto;
-  grid-template-columns: 300px;
+  grid-template-columns: var(--col-size);
   justify-self: center;
   color: snow;
   align-content: start;

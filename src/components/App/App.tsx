@@ -5,48 +5,52 @@ import { Square } from 'components/Square/Square'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
+import { useWinner } from '../../hooks/useWinner'
 import { chooseMark } from '../../utils/chooseMark'
-import { isWinner } from '../../utils/isWinner'
 
 export const App = () => {
   const [isCross, setIsCross] = useState(true)
   const [squares, setSquares] = useState(Array(9).fill(null))
   const [steps, setSteps] = useState(['Game start:'])
+  const winner = useWinner(squares, isCross)
+
+  const winMessage = `Player ${chooseMark(!isCross)} won!`
+  const stepMessage = (value: number) =>
+    `Player put the ${chooseMark(isCross)} on the cell № ${value}`
 
   const handleClick = (value: number) => {
-    if (squares[value] || isWinner(squares)) return
+    if (squares[value] || winner) return
 
     const updatedSquares = [...squares]
     updatedSquares[value] = chooseMark(isCross)
     setSquares(updatedSquares)
     setIsCross(!isCross)
-    setSteps([...steps, `Player put the ${chooseMark(isCross)} on the cell № ${value}`])
+    setSteps([...steps, stepMessage(value)])
   }
 
   useEffect(() => {
-    if (isWinner(squares)) {
-      setSteps([...steps, `Player ${chooseMark(!isCross)} won!`])
+    if (winner) {
+      setSteps([...steps, winMessage])
     }
-  }, [isCross])
+  }, [winner])
 
   return (
     <AppWrapper>
       <Board>
-        <BoardRow>
-          <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-          <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-          <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-        </BoardRow>
-        <BoardRow>
-          <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-          <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-          <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-        </BoardRow>
-        <BoardRow>
-          <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-          <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-          <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
-        </BoardRow>
+        {[0, 1, 2].map((row) => (
+          <BoardRow key={row}>
+            {[0, 1, 2].map((cell) => {
+              const index = row * 3 + cell
+              return (
+                <Square
+                  key={index}
+                  value={squares[index]}
+                  onSquareClick={() => handleClick(index)}
+                />
+              )
+            })}
+          </BoardRow>
+        ))}
       </Board>
       <Info>
         {steps.map((step, id) => (
@@ -64,11 +68,20 @@ const AppWrapper = styled.div`
   display: grid;
   height: 100vh;
   width: auto;
-  grid-template-rows: 0.4fr auto 1fr;
-  grid-template-columns: 0.4fr auto 0.4fr;
-  background-color: #282c34;
+  grid-template-rows: 8rem auto 1fr;
+  grid-template-columns: 0.4fr minmax(30rem, 1fr) 0.4fr;
+  background-color: var(--bg-color);
   grid-template-areas:
     '. . .'
     '. Board .'
     '. Info .';
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1rem minmax(20rem, 1fr) 1rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-rows: 3rem auto 1fr;
+    grid-template-columns: 1rem minmax(10rem, 1fr) 1rem;
+  }
 `
