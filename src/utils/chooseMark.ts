@@ -1,2 +1,2 @@
-export type MarkT = 'X' | 'O'
-export const chooseMark = (mark: boolean): MarkT => (mark ? 'X' : 'O')
+export type IsCrossT = 'X' | 'O'
+export const chooseMark = (isCross: boolean): IsCrossT => (isCross ? 'X' : 'O')

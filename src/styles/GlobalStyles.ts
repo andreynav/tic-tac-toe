@@ -2,7 +2,12 @@ import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
   :root {
-    --color-gold: #ffc300;
+    --bg-color: #282c34;
+    --cell-size: 100px;
+    --col-size: 300px;
+    --num-rows-cols: 3;
+    --cell-border-size: 2px;
+    --cell-font-size: 70px;
   }
   
   html, body {

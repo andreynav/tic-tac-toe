@@ -8,8 +8,8 @@ export const Board = ({ children }: PropsWithChildren) => {
 const StyledBoard = styled.div`
   display: grid;
   grid-area: Board;
-  grid-template-rows: 100px 100px 100px;
-  grid-template-columns: 300px;
+  grid-template-rows: repeat(var(--num-rows-cols), var(--cell-size));
+  grid-template-columns: var(--col-size);
   justify-self: center;
-  border: 2px solid black;
+  border: var(--cell-border-size) solid black;
 `

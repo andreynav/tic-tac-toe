@@ -1,29 +1,31 @@
 import { MouseEventHandler } from 'react'
 import styled from 'styled-components'
 
-import { MarkT } from '../../utils/chooseMark'
+import { IsCrossT } from '../../utils/chooseMark'
 
 type PropsT = {
-  value: MarkT
+  value: IsCrossT
   onSquareClick: MouseEventHandler<HTMLButtonElement>
 }
 
 export const Square = ({ value, onSquareClick }: PropsT) => {
+  const color = value === 'X' ? 'red' : 'blue'
+
   return (
-    <StyledButton onClick={onSquareClick} value={value}>
+    <StyledButton onClick={onSquareClick} color={color}>
       {value}
     </StyledButton>
   )
 }
 
-const StyledButton = styled.button<{ value: MarkT }>`
+const StyledButton = styled.button<{ color: string }>`
   display: grid;
   align-content: center;
-  min-height: 100px;
-  min-width: 100px;
-  height: 100px;
-  width: 100px;
-  border: 2px solid black;
-  font-size: 70px;
-  color: ${({ value }) => (value === 'X' ? 'red' : 'blue')};
+  min-height: var(--cell-size);
+  min-width: var(--cell-size);
+  height: var(--cell-size);
+  width: var(--cell-size);
+  border: var(--cell-border-size) solid black;
+  font-size: var(--cell-font-size);
+  color: ${({ color }) => color};
 `
