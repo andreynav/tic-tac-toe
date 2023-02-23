@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![GitHub repo size](https://img.shields.io/github/repo-size/andreynav/tic-tac-toe?style=for-the-badge)
+![GitHub deployments](https://img.shields.io/github/deployments/andreynav/tic-tac-toe/Production%20%E2%80%93%20tic-tac-toe-andyn?label=vercel%20deployment&style=for-the-badge)
+![Website](https://img.shields.io/website?label=tic%20tac%20toe&style=for-the-badge&url=https%3A%2F%2Ftic-tac-toe-andyn.vercel.app%2F)
 
-## Available Scripts
+</div>
 
-In the project directory, you can run:
+# General Notes
 
-### `yarn start`
+The current project is a project of simple tic-tac-toe game executed due to the React and Styled components.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Demo
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You can open and use the app by [tic-tac-toe app link](https://tic-tac-toe-andyn.vercel.app/).
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project structure
 
-### `yarn build`
+The project has multilayer structure:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- `public` - used to keep static content for builds
+- `assets` - used to keep static content
+- `components` - used to keep react components
+- `hooks` - used to keep hooks
+- `styles` - used to keep styles
+- `utils` - used to keep utils for helping
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The project has the next dependencies in the [package.json](package.json) file.
 
-### `yarn eject`
+<div align="center">
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/tic-tac-toe/react?style=for-the-badge)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/tic-tac-toe/styled-components?style=for-the-badge)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+</div>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Installation
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Clone project to your PC by the following command:
 
-## Learn More
+```console
+  git clone https://github.com/andreynav/tic-tac-toe.git
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Open the root directory and enter the following command:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```console
+  yarn
+```
+
+3. In the root directory create `.env` file and add inside it a row `PORT=3003` (or any desired port).
+
+
+## Running project
+
+To run project, open the root directory and enter the following command:
+
+```console
+  yarn start
+```
+
+The command runs the app in the development mode.
+Open [http://localhost:3003](http://localhost:3003) to view it in your browser.
