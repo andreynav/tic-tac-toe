@@ -64,3 +64,7 @@ To run project, open the root directory and enter the following command:
 
 The command runs the app in the development mode.
 Open [http://localhost:3003](http://localhost:3003) to view it in your browser.
+
+## License
+
+The project is open source software provided under the [Apache License 2.0](LICENSE.md).
